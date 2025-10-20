@@ -1,0 +1,5 @@
+{
+  "name": "Product Shot Idea Generator",
+  "description": "Upload a product image, get AI-powered shot ideas, and generate stunning new visuals using Gemini.",
+  "requestFramePermissions": []
+}
