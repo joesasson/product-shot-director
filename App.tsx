@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { analyzeProductImage, generateShotIdea } from './services/geminiService';
 import { fileToBase64 } from './utils/fileUtils';
@@ -135,12 +134,7 @@ const App: React.FC = () => {
 
         <div className="mt-12 max-w-6xl mx-auto">
           {appState === 'generating' && <Loader text="Creating your product shots... This might take a moment." />}
-          {generatedImages.length > 0 && (
-            <div className="bg-gray-800/50 p-6 rounded-2xl shadow-lg backdrop-blur-sm border border-gray-700">
-              <h2 className="text-2xl font-bold mb-6 text-green-300 text-center">3. Your Generated Shots</h2>
-              <GeneratedImagesDisplay images={generatedImages} />
-            </div>
-          )}
+          <GeneratedImagesDisplay images={generatedImages} shotIdeas={shotIdeas} />
         </div>
       </main>
     </div>

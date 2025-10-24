@@ -85,10 +85,18 @@ export const generateShotIdea = async (
     },
   };
   
-  let fullPrompt = `Using the provided product image as a reference for the main subject, generate a new image based on this concept: "${prompt}".`;
+  const guardrails = `
+    **Critical Rule:** The product shown in the reference image must be included in the new image *without any modifications whatsoever*.
+    - **Do NOT alter the product's shape, color, texture, or any text/logos on it.**
+    - The goal is to place the *exact* original product into a new scene.
+    - Only change the background, environment, lighting, and composition according to the concept.
+    - The final image must look like a realistic photograph of the original, unaltered product in a new setting.
+  `;
+
+  let fullPrompt = `Using the provided product image as a reference for the main subject, generate a new image based on this concept: "${prompt}". ${guardrails}`;
 
   if (stylePreset && stylePreset.toLowerCase() !== 'default') {
-    fullPrompt += ` The image should have a ${stylePreset.toLowerCase()} style.`;
+    fullPrompt += ` The image should have a ${stylePreset.toLowerCase()} aesthetic.`;
   }
   
   let ratioTerm = 'square (1:1)';
